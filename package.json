@@ -1,0 +1,23 @@
+{
+  "name": "nodemongo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "Allan Ferreira",
+  "license": "ISC",
+  "description": "Node + Mongo + Express Application",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongodb": "^6.6.0",
+    "mongoose": "^8.3.3",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
