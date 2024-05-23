@@ -1,36 +1,68 @@
 const mongoose = require("mongoose");
-const PetModel = require("./pet.model");
 
-const appointmentSchema = new mongoose.Schema({
-  user_id: {
+const petSchema = new mongoose.Schema({
+  pet_name: {
     type: String,
     required: true,
   },
-  name: {
+  breed: {
     type: String,
     required: true,
   },
-  email: {
+  genre: {
+    type: String,
+
+    required: true,
+  },
+  specie: {
     type: String,
     required: true,
   },
-  phone: {
-    type: String,
-  },
-  service: {
-    type: String,
-    required: true,
-  },
-  origin: {
-    type: String,
-  },
-  appointment: {
-    type: Date,
-    required: true,
-  },
-  pet: { PetModel },
 });
 
-const Appointment = mongoose.model("Appointment", appointmentSchema);
+const appointmentSchema = new mongoose.Schema(
+  {
+    user_id: {
+      type: String,
+      required: true,
+    },
+    pet_id: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+    },
+    service_id: {
+      type: String,
+      required: true,
+    },
+    service: {
+      type: String,
+      required: true,
+    },
+    origin: {
+      type: String,
+    },
+    appointment: {
+      type: Date,
+      required: true,
+    },
+    pet: { petSchema },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = Appointment;
+const AppointmentModel = mongoose.model("Appointment", appointmentSchema);
+
+module.exports = AppointmentModel;

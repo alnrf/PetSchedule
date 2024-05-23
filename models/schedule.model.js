@@ -12,11 +12,16 @@ const daySchema = new mongoose.Schema({
   times: [timeSchema],
 });
 
-const monthSchema = new mongoose.Schema({
-  month: { type: Date, required: true },
-  description: { type: String, required: true },
-  days: [daySchema],
-});
+const monthSchema = new mongoose.Schema(
+  {
+    month: { type: Date, required: true },
+    description: { type: String, required: true },
+    days: [daySchema],
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const ScheduleModel = mongoose.model("Schedule", monthSchema);
 

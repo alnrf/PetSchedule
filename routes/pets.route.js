@@ -30,4 +30,51 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.patch("/:userId/pet/:petId", async (req, res) => {
+  const { userId, petId } = req.params;
+  const { pet_name, breed, genre, specie, birth } = req.body;
+
+  try {
+    const result = await ProfileModel.findOneAndUpdate(
+      { user_id: userId, "pets._id": petId },
+      {
+        $set: {
+          "pets.$.pet_name": pet_name,
+          "pets.$.breed": breed,
+          "pets.$.genre": genre,
+          "pets.$.specie": specie,
+        },
+      },
+      { new: true }
+    );
+    if (!result) {
+      return res.status(404).send({ message: "Pet not found" });
+    }
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+});
+
+router.delete("/:userId/pet/:petId", async (req, res) => {
+  const { userId, petId } = req.params;
+  try {
+    const result = await ProfileModel.findOneAndUpdate(
+      { user_id: userId },
+      {
+        $pull: {
+          pets: { _id: petId },
+        },
+      },
+      { new: true }
+    );
+    if (!result) {
+      return res.status(404).send({ message: "Pet not found" });
+    }
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+});
+
 module.exports = router;
