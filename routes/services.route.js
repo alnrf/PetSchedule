@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 });
+
 router.post("/", async (req, res) => {
   try {
     const service = await ServicesModel.create(req.body);
@@ -18,6 +19,7 @@ router.post("/", async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 });
+
 router.patch("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -33,6 +35,7 @@ router.patch("/:id", async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 });
+
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
